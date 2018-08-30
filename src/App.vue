@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-      <SegmentsList :segments="segments"></SegmentsList>
+      <div class="container">
+          <SegmentsList :segments="segments"></SegmentsList>
+      </div>
   </div>
 </template>
 
@@ -27,16 +29,11 @@ const segmentsList = [
         conversionType: 'sale', //sale
     },
 ];
-const a = {
-    a: 'a',
-    b: 'b',
-};
 
 export default {
     name: 'app',
     data() {
         return {
-            b: {...a},
             segments: segmentsList
         }
     },
@@ -44,7 +41,6 @@ export default {
         SegmentsList
     },
     mounted() {
-        console.log(this.b)
     }
 }
 </script>

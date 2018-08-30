@@ -38,6 +38,8 @@
         name: 'SegmentsList',
         props: {
             segments: Array
+        },
+        mounted() {
         }
     }
 </script>
