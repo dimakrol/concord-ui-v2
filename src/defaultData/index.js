@@ -1,6 +1,7 @@
 export const segments =
     [
         {
+            id: '',
             andFilters: [ //array of filters
                 {
                     include: '', //true or false
@@ -25,11 +26,15 @@ export const segments =
                     ]
                 }
             ],
-            landingPages: [ //array of landing pages
-                {
-                    landingPageId: '',
-                    weight: '',
+            landingPagesData: {
+                weight: '',
+                pages:
+                    [ //array of landing pages
+                        {
+                            landingPageId: '',
+                            weight: '',
+                        }
+                    ],
                 }
-            ]
         }
     ];

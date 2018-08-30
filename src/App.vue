@@ -27,16 +27,24 @@ const segmentsList = [
         conversionType: 'sale', //sale
     },
 ];
+const a = {
+    a: 'a',
+    b: 'b',
+};
 
 export default {
     name: 'app',
     data() {
         return {
+            b: {...a},
             segments: segmentsList
         }
     },
     components: {
         SegmentsList
+    },
+    mounted() {
+        console.log(this.b)
     }
 }
 </script>
