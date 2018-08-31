@@ -4,14 +4,18 @@
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
               <img class="logo" alt="Ad-Center logo" src="./assets/logo.png">
           </nav>
-          <SegmentsList :segments="segments"></SegmentsList>
+          <div class="my-4">
+              <NewSegmentForm></NewSegmentForm>
+          </div>
+          <SegmentsList></SegmentsList>
       </div>
   </div>
 </template>
 
 <script>
 import SegmentsList from './components/SegmentsList.vue'
-import NewSegmentModal from './components/segmentModals/NewSegmentModal'
+// import NewSegmentModal from './components/segmentModals/NewSegmentModal'
+import NewSegmentForm from './components/NewSegmentForm.vue';
 
 const segmentsList = [
     {
@@ -43,7 +47,7 @@ export default {
     },
     components: {
         SegmentsList,
-        NewSegmentModal,
+        NewSegmentForm
     },
     mounted() {
     }
