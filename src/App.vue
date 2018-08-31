@@ -1,6 +1,9 @@
 <template>
   <div id="app">
       <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <img class="logo" alt="Ad-Center logo" src="./assets/logo.png">
+          </nav>
           <SegmentsList :segments="segments"></SegmentsList>
       </div>
   </div>
@@ -8,6 +11,7 @@
 
 <script>
 import SegmentsList from './components/SegmentsList.vue'
+import NewSegmentModal from './components/segmentModals/NewSegmentModal'
 
 const segmentsList = [
     {
@@ -38,7 +42,8 @@ export default {
         }
     },
     components: {
-        SegmentsList
+        SegmentsList,
+        NewSegmentModal,
     },
     mounted() {
     }
@@ -46,4 +51,8 @@ export default {
 </script>
 
 <style>
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
 </style>
