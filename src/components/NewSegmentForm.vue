@@ -7,40 +7,46 @@
                 </div>
             </div>
 
-            <div class="row my-3">
-                <div class="col">
-                    <select class="form-control">
-                        <option :value="true">Include</option>
-                        <option :value="false">Exclude</option>
-                    </select>
+            <div v-for="(and, index) in segment.andFilters">
+                <div class="row my-3">
+                    <div class="col">
+                        <select class="form-control">
+                            <option :value="true">Include</option>
+                            <option :value="false">Exclude</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col">
-                    <select class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <select class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <select class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
+                <div class="row">
+                    <div class="col">
+                        <div class="btn btn-primary float-right">Or</div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">And</button>
-                </div>
-                <div class="col">
-                    <button type="submit" class="btn btn-primary">Or</button>
+                    <div class="btn btn-primary" @click="addAnd">And</div>
                 </div>
             </div>
+
+
         </form>
 
     </div>
@@ -89,6 +95,9 @@ export default {
     methods: {
         clearSegment() {
             console.log('here')
+        },
+        addAnd() {
+            this.segment.andFilters.push({...defaultAnd})
         }
     }
 }
