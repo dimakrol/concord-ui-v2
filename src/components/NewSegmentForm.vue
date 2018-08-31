@@ -40,6 +40,7 @@
                     </div>
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <div class="col">
                     <div class="btn btn-primary" @click="addAnd">And</div>
