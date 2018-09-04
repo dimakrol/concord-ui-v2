@@ -47,27 +47,34 @@
                     <h6>Or</h6>
                     <div class="row my-3">
                         <div class="col">
-                            <select class="form-control">
+                            <select v-model="or.include" class="form-control">
                                 <option :value="true">Include</option>
                                 <option :value="false">Exclude</option>
                             </select>
                         </div>
                         <div class="col">
-                            <select class="form-control">
-                                <option selected>Choose...</option>
+                            <select v-model="or.type" class="form-control">
+                                <option selected>Type </option>
+                                <option value="vid">Vid</option>
                             </select>
                         </div>
                         <div class="col">
-                            <select class="form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
+                            <select v-model="or.advertiserId" class="form-control">
+                                <option :value="null" selected>Choose Advertiser</option>
+                                <option v-for="advertiser in advertisers" value="advertiser.id">{{advertiser.name}}</option>
                             </select>
                         </div>
                         <div class="col">
-                            <select class="form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
+                            <select v-model="or.conversionType"  class="form-control">
+                                <option selected>Choose Conversion Type</option>
+                                <option value="sale">Sale</option>
                             </select>
+                        </div>
+                        <div class="col">
+                            <input v-model="or.dates.from" type="date" class="form-control">
+                        </div>
+                        <div class="col">
+                            <input v-model="or.dates.to" type="date" class="form-control">
                         </div>
                         <div class="col">
                             <div class="btn btn-danger" @click="deleteOrFilter(andFilterIndex, orIndexFilter)">Del Or</div>
@@ -101,7 +108,7 @@
 
 <script>
 import {advertisers, defaultSegment, defaultAnd, defaultOr} from '../defaultData';
-
+import uuid from 'uuid/v4';
 
 export default {
     name: 'NewSegmentForm',
@@ -109,13 +116,32 @@ export default {
     },
     data() {
         return {
-            segment: {...defaultSegment},
+            segment: this.getDefaultSegment(),
             advertisers
         }
     },
     methods: {
+        getDefaultSegment() {
+            return {
+                name: '',
+                andFilters: [ //array of filters
+                    {
+                        include: true, //true or false
+                        type: 'vid', //vid
+                        advertiserId: null, //1,2,3
+                        conversionType: 'sale', //sale
+                        dates: {
+                            from: '',
+                            to: '',
+                        },
+                        orFilters: []
+                    }
+                ],
+            };
+        },
         clearForm() {
-            this.segment = {...defaultSegment};
+            // console.log( {...defaultSegment});
+            this.segment = this.getDefaultSegment();
         },
         addAndFilter() {
             this.segment.andFilters.push({...defaultAnd})
@@ -130,8 +156,13 @@ export default {
             this.segment.andFilters[andIndex].orFilters.splice(orIndex, 1);
         },
         save() {
+            this.segment.id = uuid();
             this.$emit('createSegment', {segment: this.segment});
             this.clearForm();
+        },
+        prepareUpdate(segment) {
+            this.segment = {...segment};
+            // console.log('in child component: ', segment);
         }
     }
 }

@@ -5,6 +5,8 @@
                 <div class="card my-4">
                     <div class="card-header">
                         Segment {{segment.name}}
+                        <div @click="prepareEdit(segment.id)" class="btn btn-primary float-right mx-3">Edit</div>
+                        <div class="btn btn-danger float-right">Delete</div>
                     </div>
                     <div class="card-body">
                         {{segment.name}}
@@ -29,7 +31,11 @@
                 segments: this.segmentsProp
             }
         },
-        mounted() {
+        methods: {
+            prepareEdit(id) {
+                console.log('segment list: ', id);
+                this.$emit('prepareEdit', id);
+            }
         }
     }
 </script>
