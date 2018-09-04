@@ -5,8 +5,13 @@
               <img class="logo" alt="Ad-Center logo" src="./assets/logo.png">
           </nav>
           <div class="my-4">
-              <NewSegmentForm ref="segmentForm" @createSegment="createSegment"></NewSegmentForm>
+              <NewSegmentForm
+                      ref="segmentForm"
+                      @createSegment="createSegment"
+                      @updateSegment="updateSegment"
+              ></NewSegmentForm>
           </div>
+          <hr>
           <SegmentsList @prepareEdit="action" :segments-prop="segments"></SegmentsList>
       </div>
   </div>
@@ -36,8 +41,19 @@ export default {
                 confirmButtonText: 'Cool'
             })
         },
+        updateSegment(payload) {
+            const index = this.segments.findIndex(segment => segment.id === payload.segment.id);
+            this.segments.splice(index, 1, payload.segment);
+            swal({
+                title: 'Success!',
+                text: `Segment ${payload.segment.name} updated!!!`,
+                type: 'success',
+                confirmButtonText: 'Cool'
+            })
+        },
         action(id) {
             const segment = this.segments.find(segment => segment.id === id);
+
             this.$refs.segmentForm.prepareUpdate(segment)
         }
     },

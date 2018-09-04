@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h5>{{this.formTitle}}</h5>
         <form @submit.prevent="save">
             <div class="row">
                 <div class="col">
@@ -98,6 +99,7 @@
             <div class="row my-3">
                 <div class="col">
                     <button class="btn btn-success">Save</button>
+                    <div class="btn btn-danger mx-3" @click="clearForm">Clear</div>
                 </div>
             </div>
         </form>
@@ -117,7 +119,8 @@ export default {
     data() {
         return {
             segment: this.getDefaultSegment(),
-            advertisers
+            advertisers,
+            formTitle: 'Create Segment',
         }
     },
     methods: {
@@ -142,6 +145,7 @@ export default {
         clearForm() {
             // console.log( {...defaultSegment});
             this.segment = this.getDefaultSegment();
+            this.formTitle = 'Create Segment';
         },
         addAndFilter() {
             this.segment.andFilters.push({...defaultAnd})
@@ -156,12 +160,24 @@ export default {
             this.segment.andFilters[andIndex].orFilters.splice(orIndex, 1);
         },
         save() {
+            if (!this.segment.id) {
+                this.createSegment();
+                return;
+            }
+            this.updateSegment();
+        },
+        createSegment() {
             this.segment.id = uuid();
             this.$emit('createSegment', {segment: this.segment});
             this.clearForm();
         },
+        updateSegment() {
+            this.$emit('updateSegment', {segment: this.segment});
+            this.clearForm();
+        },
         prepareUpdate(segment) {
             this.segment = {...segment};
+            this.formTitle = `Update Segment ${this.segment.name}`
             // console.log('in child component: ', segment);
         }
     }
