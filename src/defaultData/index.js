@@ -60,7 +60,18 @@ export const defaultAnd = {
             },
         }
     ]
-}
+};
+
+export const defaultOr = {
+    include: '', //true or false
+    type: '', //vid
+    advertiserId: '', //1,2,3
+    conversionType: '', //sale
+    dates: {
+        from: '',
+        to: '',
+    },
+};
 
 export const advertisers = [
     {
