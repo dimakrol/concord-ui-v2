@@ -18,37 +18,15 @@
 
 
 <script>
-    const segmentsList = [
-        {
-            include: 'true', //true or false
-            type: 'a', //vid
-            advertiserId: 1, //1,2,3
-            conversionType: 'sale', //sale
-        },
-        {
-            include: 'false', //true or false
-            type: 'b', //vid
-            advertiserId: 2, //1,2,3
-            conversionType: 'sale', //sale
-        },
-        {
-            include: 'true', //true or false
-            type: 'c', //vid
-            advertiserId: 3, //1,2,3
-            conversionType: 'sale', //sale
-        },
-    ];
-
-
     /* eslint-disable */
     export default {
         name: 'SegmentsList',
-        // props: {
-        //     segments: Array
-        // },
+        props: {
+            segmentsProp: Array
+        },
         data() {
             return {
-                segments: segmentsList
+                segments: this.segmentsProp
             }
         },
         mounted() {

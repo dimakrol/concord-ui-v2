@@ -2,6 +2,7 @@ export const segments =
     [
         {
             id: '',
+            name: '',
             andFilters: [ //array of filters
                 {
                     include: '', //true or false
@@ -13,16 +14,16 @@ export const segments =
                         to: '',
                     },
                     orFilters: [
-                        {
-                            include: '', //true or false
-                            type: '', //vid
-                            advertiserId: '', //1,2,3
-                            conversionType: '', //sale
-                            dates: {
-                                from: '',
-                                to: '',
-                            },
-                        }
+                        // {
+                        //     include: '', //true or false
+                        //     type: '', //vid
+                        //     advertiserId: '', //1,2,3
+                        //     conversionType: '', //sale
+                        //     dates: {
+                        //         from: '',
+                        //         to: '',
+                        //     },
+                        // }
                     ]
                 }
             ],
@@ -40,33 +41,22 @@ export const segments =
     ];
 
 export const defaultAnd = {
-    include: '', //true or false
-    type: '', //vid
-    advertiserId: '', //1,2,3
-    conversionType: '', //sale
+    include: true, //true or false
+    type: 'vid', //vid
+    advertiserId: null, //1,2,3
+    conversionType: 'sale', //sale
     dates: {
         from: '',
         to: '',
     },
-    orFilters: [
-        {
-            include: '', //true or false
-            type: '', //vid
-            advertiserId: '', //1,2,3
-            conversionType: '', //sale
-            dates: {
-                from: '',
-                to: '',
-            },
-        }
-    ]
+    orFilters: []
 };
 
 export const defaultOr = {
-    include: '', //true or false
-    type: '', //vid
-    advertiserId: '', //1,2,3
-    conversionType: '', //sale
+    include: true, //true or false
+    type: 'vid', //vid
+    advertiserId: null, //1,2,3
+    conversionType: 'sale', //sale
     dates: {
         from: '',
         to: '',
