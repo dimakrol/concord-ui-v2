@@ -33,6 +33,12 @@
                             <option value="sale">Sale</option>
                         </select>
                     </div>
+                    <div class="col">
+                        <input v-model="and.dates.from" type="date" class="form-control">
+                    </div>
+                    <div class="col">
+                        <input v-model="and.dates.to" type="date" class="form-control">
+                    </div>
                     <div v-if="1 < segment.andFilters.length" class="col">
                         <div class="btn btn-warning" @click="delAndFilter(andFilterIndex)">Del And</div>
                     </div>
@@ -94,7 +100,7 @@
 
 
 <script>
-import {advertisers, defaultAnd, defaultOr} from '../defaultData';
+import {advertisers, defaultSegment, defaultAnd, defaultOr} from '../defaultData';
 
 
 export default {
@@ -103,29 +109,13 @@ export default {
     },
     data() {
         return {
-            segment: {
-                name: '',
-                andFilters: [ //array of filters
-                    {
-                        include: true, //true or false
-                        type: 'vid', //vid
-                        advertiserId: null, //1,2,3
-                        conversionType: 'sale', //sale
-                        dates: {
-                            from: '',
-                            to: '',
-                        },
-                        orFilters: []
-                    }
-                ],
-            },
+            segment: {...defaultSegment},
             advertisers
         }
     },
     methods: {
-        clearSegment() {
-            //todo
-
+        clearForm() {
+            this.segment = {...defaultSegment};
         },
         addAndFilter() {
             this.segment.andFilters.push({...defaultAnd})
@@ -140,7 +130,8 @@ export default {
             this.segment.andFilters[andIndex].orFilters.splice(orIndex, 1);
         },
         save() {
-            console.log('here');
+            this.$emit('createSegment', {segment: this.segment});
+            this.clearForm();
         }
     }
 }

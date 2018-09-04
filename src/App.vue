@@ -5,7 +5,7 @@
               <img class="logo" alt="Ad-Center logo" src="./assets/logo.png">
           </nav>
           <div class="my-4">
-              <NewSegmentForm></NewSegmentForm>
+              <NewSegmentForm @createSegment="aaa"></NewSegmentForm>
           </div>
           <SegmentsList :segments-prop="segments"></SegmentsList>
       </div>
@@ -22,6 +22,11 @@ export default {
     data() {
         return {
             segments: []
+        }
+    },
+    methods: {
+        aaa(a) {
+            this.segments.push(a.segment)
         }
     },
     components: {

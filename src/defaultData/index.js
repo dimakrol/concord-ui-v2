@@ -63,6 +63,23 @@ export const defaultOr = {
     },
 };
 
+export const defaultSegment = {
+        name: '',
+        andFilters: [ //array of filters
+            {
+                include: true, //true or false
+                type: 'vid', //vid
+                advertiserId: null, //1,2,3
+                conversionType: 'sale', //sale
+                dates: {
+                    from: '',
+                    to: '',
+                },
+                orFilters: []
+            }
+            ],
+    };
+
 export const advertisers = [
     {
         name: 'Joker Y',

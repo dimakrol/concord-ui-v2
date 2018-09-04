@@ -4,10 +4,10 @@
         <div v-for="segment in segments">
                 <div class="card my-4">
                     <div class="card-header">
-                        Segment {{segment.advertiserId}}
+                        Segment {{segment.name}}
                     </div>
                     <div class="card-body">
-                        {{segment.type}}
+                        {{segment.name}}
                     </div>
                 </div>
             <!--<li v-bind:key="segment.advertiserId">{{segment.type}}</li>-->
